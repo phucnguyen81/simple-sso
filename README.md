@@ -75,7 +75,7 @@ const login = (req, res, next) => {
     if (alloweOrigin[url.origin] !== true) {
       return res
         .status(400)
-        .json({ message: "Your are not allowed to access the sso-server" });
+        .json({ message: "You are not allowed to access the sso-server" });
     }
   }
   if (req.session.user != null && serviceURL == null) {
