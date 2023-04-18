@@ -1,9 +1,13 @@
+const PORT = process.argv[2] || 3010;
+
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
 const engine = require("ejs-mate");
 const session = require("express-session");
-const router = require("./router");
+const controller = require("./controller");
+
+const router = express.Router();
 
 app.use(
   session({
@@ -13,7 +17,7 @@ app.use(
   })
 );
 app.use((req, res, next) => {
-  console.log(req.session);
+  console.log(`server session ${req.session}`);
   next();
 });
 app.use(express.urlencoded({ extended: true }));
@@ -23,6 +27,13 @@ app.use(morgan("dev"));
 app.engine("ejs", engine);
 app.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
+
+router
+  .route("/login")
+  .get(controller.login)
+  .post(controller.doLogin);
+
+router.get("/verifytoken", controller.verifySsoToken);
 
 app.use("/simplesso", router);
 app.get("/", (req, res, next) => {
@@ -54,4 +65,6 @@ app.use((err, req, res, next) => {
   res.status(statusCode).json({ message });
 });
 
-module.exports = app;
+app.listen(PORT, () => {
+  console.info(`sso-server listening on port ${PORT}`);
+});
