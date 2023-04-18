@@ -5,9 +5,10 @@ const morgan = require("morgan");
 const app = express();
 const engine = require("ejs-mate");
 const session = require("express-session");
-const controller = require("./controller");
 
 const router = express.Router();
+
+const controller = require("./controller");
 
 app.use(
   session({
