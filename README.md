@@ -8,6 +8,13 @@ To Run these examples you need to add the below entry inside your `/etc/hosts` f
 127.0.0.1   consumer.ankuranand.in
 ```
 
+- Run `node server.js` to start the sso server
+- Run `node consumer.js` to start the sso consumer
+- Go to `consumer.ankuranand.in:3020` to access the sso consumer
+- The sso consumer redirects to the sso server for login
+- Use email `info@ankuranand.com` and password `test` to log into the sso server
+- The sso server redirects back to the sso consumer
+
 ## Introduction
 
 The web application uses the browser/server architecture, HTTP as the communication protocol. HTTP is a stateless protocol. Each time the browser requests, the server processes it independently and does not associate with the previous or subsequent request. But it also means that any user can access the server resources through the browser. If you want to protect some resources of the server, you must restrict the browser request; to limit the browser request, you must authenticate the browser request, respond to the legitimate request, ignore Illegal request; to authenticate a browser request, you must be aware of the browser request status. Since the HTTP protocol is stateless, so we let the server and browser maintain a state together, using the mechanism such as ‘Cookies’ or ‘Sessions’ or ‘JWT’.
