@@ -121,7 +121,7 @@ app.get("/", (req, res, next) => {
   }
 
   console.log(`User session found, rendering index page`);
-  res.render("index", {
+  res.render("consumerindex", {
     what: `SSO-Consumer One ${JSON.stringify(req.session.user)}`,
     title: "SSO-Consumer | Home"
   });
